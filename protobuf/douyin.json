@@ -1,0 +1,1224 @@
+{
+    "common": {
+        "method": "WebcastMemberMessage",
+        "msgId": "7173222244842425120",
+        "roomId": "7173215537374432014",
+        "createTime": "0",
+        "monitor": 0,
+        "isShowMsg": true,
+        "describe": "",
+        "displayText": {
+            "key": "live_room_enter_toast",
+            "defaultPattern": "{0:user} 来了{1:string}",
+            "defaultFormat": {
+                "color": "#b8ffffff",
+                "bold": false,
+                "italic": false,
+                "weight": 400,
+                "italicAngle": 0,
+                "fontSize": 0,
+                "useHeighLightColor": false,
+                "useRemoteClor": false
+            },
+            "piecesList": [
+                {
+                    "type": 11,
+                    "format": {
+                        "color": "#8CE7FF",
+                        "bold": false,
+                        "italic": false,
+                        "weight": 400,
+                        "italicAngle": 0,
+                        "fontSize": 0,
+                        "useHeighLightColor": false,
+                        "useRemoteClor": false
+                    },
+                    "stringValue": "",
+                    "userValue": {
+                        "user": {
+                            "id": "87955073206",
+                            "shortId": "332879956",
+                            "nickname": "偷袈裟的黑熊怪",
+                            "gender": 1,
+                            "signature": "",
+                            "level": 0,
+                            "birthday": "0",
+                            "telephone": "",
+                            "avatarThumb": {
+                                "urlListList": [
+                                    "https://p26.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ef0f623d95f6229c3a4d541ab7e84ca0.jpeg?from=4010531038"
+                                ],
+                                "uri": "",
+                                "height": "0",
+                                "width": "0",
+                                "avgColor": "",
+                                "imageType": 0,
+                                "openWebUrl": "",
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            },
+                            "verified": false,
+                            "experience": 0,
+                            "city": "",
+                            "status": 0,
+                            "createTime": "0",
+                            "modifyTime": "0",
+                            "secret": 0,
+                            "shareQrcodeUri": "",
+                            "incomeSharePercent": 0,
+                            "badgeImageListList": [
+                                {
+                                    "urlListList": [
+                                        "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                                    ],
+                                    "uri": "",
+                                    "height": "16",
+                                    "width": "32",
+                                    "avgColor": "",
+                                    "imageType": 1,
+                                    "openWebUrl": "",
+                                    "content": {
+                                        "name": "",
+                                        "fontColor": "",
+                                        "level": "11",
+                                        "alternativeText": "荣誉等级11级勋章"
+                                    },
+                                    "isAnimated": false,
+                                    "flexSettingListList": [],
+                                    "textSettingListList": []
+                                }
+                            ],
+                            "followInfo": {
+                                "followingCount": "160",
+                                "followerCount": "74",
+                                "followStatus": "1",
+                                "pushStatus": "0",
+                                "remarkName": "",
+                                "followerCountStr": "",
+                                "followingCountStr": ""
+                            },
+                            "payGrade": {
+                                "totalDiamondCount": "0",
+                                "name": "",
+                                "nextName": "",
+                                "level": "11",
+                                "nextDiamond": "0",
+                                "nowDiamond": "0",
+                                "thisGradeMinDiamond": "0",
+                                "thisGradeMaxDiamond": "0",
+                                "payDiamondBak": "0",
+                                "gradeDescribe": "",
+                                "gradeIconListList": [],
+                                "screenChatType": "0",
+                                "newImIconWithLevel": {
+                                    "urlListList": [
+                                        "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                                    ],
+                                    "uri": "",
+                                    "height": "16",
+                                    "width": "32",
+                                    "avgColor": "",
+                                    "imageType": 1,
+                                    "openWebUrl": "",
+                                    "isAnimated": false,
+                                    "flexSettingListList": [],
+                                    "textSettingListList": []
+                                },
+                                "newLiveIcon": {
+                                    "urlListList": [
+                                        "http://p3-webcast.douyinpic.com/img/webcast/aweme_pay_grade_2x_10_14.png~tplv-obj.image"
+                                    ],
+                                    "uri": "",
+                                    "height": "12",
+                                    "width": "12",
+                                    "avgColor": "",
+                                    "imageType": 1,
+                                    "openWebUrl": "",
+                                    "isAnimated": false,
+                                    "flexSettingListList": [],
+                                    "textSettingListList": []
+                                },
+                                "upgradeNeedConsume": "0",
+                                "nextPrivileges": "",
+                                "score": "0",
+                                "gradeBanner": ""
+                            },
+                            "fansClub": {
+                                "data": {
+                                    "clubName": "麻团儿",
+                                    "level": 10,
+                                    "userFansClubStatus": 2,
+                                    "badge": {
+                                        "iconsMap": [
+                                            [
+                                                2,
+                                                {
+                                                    "urlListList": [
+                                                        "http://p9-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image",
+                                                        "http://p3-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image",
+                                                        "http://p6-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image"
+                                                    ],
+                                                    "uri": "webcast/ranklist_fansclub_gray_advanced_badge_10.png",
+                                                    "height": "0",
+                                                    "width": "0",
+                                                    "avgColor": "",
+                                                    "imageType": 0,
+                                                    "openWebUrl": "",
+                                                    "isAnimated": false,
+                                                    "flexSettingListList": [],
+                                                    "textSettingListList": []
+                                                }
+                                            ],
+                                            [
+                                                4,
+                                                {
+                                                    "urlListList": [
+                                                        "http://p9-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image",
+                                                        "http://p6-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image",
+                                                        "http://p3-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image"
+                                                    ],
+                                                    "uri": "webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png",
+                                                    "height": "0",
+                                                    "width": "0",
+                                                    "avgColor": "",
+                                                    "imageType": 0,
+                                                    "openWebUrl": "",
+                                                    "isAnimated": false,
+                                                    "flexSettingListList": [
+                                                        {
+                                                            "settingListList": [
+                                                                "0",
+                                                                "0",
+                                                                "62",
+                                                                "18"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "textSettingListList": [
+                                                        {
+                                                            "settingListList": [
+                                                                "0",
+                                                                "0",
+                                                                "62",
+                                                                "18"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        ],
+                                        "title": "麻团儿"
+                                    },
+                                    "availableGiftIdsList": [],
+                                    "anchorId": "4454863190898301",
+                                    "badgeType": 0
+                                },
+                                "preferDataMap": [
+                                    [
+                                        1,
+                                        {
+                                            "clubName": "可米粉",
+                                            "level": 10,
+                                            "userFansClubStatus": 1,
+                                            "badge": {
+                                                "iconsMap": [
+                                                    [
+                                                        2,
+                                                        {
+                                                            "urlListList": [
+                                                                "http://p9-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image",
+                                                                "http://p6-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image",
+                                                                "http://p3-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image"
+                                                            ],
+                                                            "uri": "webcast/fansclub_level_v6_10.png",
+                                                            "height": "0",
+                                                            "width": "0",
+                                                            "avgColor": "",
+                                                            "imageType": 0,
+                                                            "openWebUrl": "",
+                                                            "isAnimated": false,
+                                                            "flexSettingListList": [],
+                                                            "textSettingListList": []
+                                                        }
+                                                    ],
+                                                    [
+                                                        4,
+                                                        {
+                                                            "urlListList": [
+                                                                "http://p3-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image",
+                                                                "http://p9-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image",
+                                                                "http://p6-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image"
+                                                            ],
+                                                            "uri": "webcast/fansclub_level_v6_10_xmp.png",
+                                                            "height": "0",
+                                                            "width": "0",
+                                                            "avgColor": "",
+                                                            "imageType": 0,
+                                                            "openWebUrl": "",
+                                                            "isAnimated": false,
+                                                            "flexSettingListList": [
+                                                                {
+                                                                    "settingListList": [
+                                                                        "0",
+                                                                        "0",
+                                                                        "62",
+                                                                        "18"
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "textSettingListList": [
+                                                                {
+                                                                    "settingListList": [
+                                                                        "0",
+                                                                        "0",
+                                                                        "62",
+                                                                        "18"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                ],
+                                                "title": "可米粉"
+                                            },
+                                            "availableGiftIdsList": [],
+                                            "anchorId": "88376779186",
+                                            "badgeType": 0
+                                        }
+                                    ]
+                                ]
+                            },
+                            "specialId": "",
+                            "realTimeIconsList": [],
+                            "newRealTimeIconsList": [],
+                            "topVipNo": "0",
+                            "userAttr": {
+                                "isMuted": false,
+                                "isAdmin": false,
+                                "isSuperAdmin": false,
+                                "adminPrivilegesList": []
+                            },
+                            "payScore": "0",
+                            "ticketCount": "0",
+                            "linkMicStats": 0,
+                            "displayId": "332879956",
+                            "withCommercePermission": false,
+                            "withFusionShopEntry": false,
+                            "totalRechargeDiamondCount": "0",
+                            "verifiedContent": "",
+                            "topFansList": [],
+                            "secUid": "MS4wLjABAAAAd2SayiEFti_UaDCE2ivFbwPV4WdihJlOSyJw3g93pKw",
+                            "userRole": 0,
+                            "authorizationInfo": 3,
+                            "adversaryAuthorizationInfo": 0,
+                            "mediaBadgeImageListList": [],
+                            "adversaryUserStatus": 0,
+                            "commerceWebcastConfigIdsList": [],
+                            "badgeImageListV2List": [
+                                {
+                                    "urlListList": [
+                                        "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                                    ],
+                                    "uri": "",
+                                    "height": "16",
+                                    "width": "32",
+                                    "avgColor": "",
+                                    "imageType": 1,
+                                    "openWebUrl": "",
+                                    "content": {
+                                        "name": "",
+                                        "fontColor": "",
+                                        "level": "11",
+                                        "alternativeText": "荣誉等级11级勋章"
+                                    },
+                                    "isAnimated": false,
+                                    "flexSettingListList": [],
+                                    "textSettingListList": []
+                                },
+                                {
+                                    "urlListList": [
+                                        "http://p6-webcast.douyinpic.com/img/webcast/anchor_fans_tag_v2.png~tplv-obj.image"
+                                    ],
+                                    "uri": "",
+                                    "height": "0",
+                                    "width": "0",
+                                    "avgColor": "",
+                                    "imageType": 35,
+                                    "openWebUrl": "",
+                                    "content": {
+                                        "name": "",
+                                        "fontColor": "",
+                                        "level": "0",
+                                        "alternativeText": "粉丝勋章"
+                                    },
+                                    "isAnimated": false,
+                                    "flexSettingListList": [],
+                                    "textSettingListList": []
+                                }
+                            ],
+                            "locationCity": "",
+                            "remarkName": "",
+                            "mysteryMan": 1,
+                            "webRid": "",
+                            "desensitizedNickname": "偷袈裟的黑熊怪",
+                            "isAnonymous": false,
+                            "consumeDiamondLevel": 0,
+                            "webcastUid": "MS4wLjMXAhNEXaA8JUlB9s_FOx_efh6IflRC2OdEBB3CSquxIBScHk0Ov1-U809cJg5Z0FA",
+                            "allowBeLocated": false,
+                            "allowFindByContacts": false,
+                            "allowOthersDownloadVideo": false,
+                            "allowOthersDownloadWhenSharingVideo": false,
+                            "allowShareShowProfile": false,
+                            "allowShowInGossip": false,
+                            "allowShowMyAction": false,
+                            "allowStrangeComment": false,
+                            "allowUnfollowerComment": false,
+                            "allowUseLinkmic": false,
+                            "bgImgUrl": "",
+                            "birthdayDescription": "",
+                            "birthdayValid": false,
+                            "blockStatus": 0,
+                            "commentRestrict": 0,
+                            "constellation": "",
+                            "disableIchat": 0,
+                            "enableIchatImg": "0",
+                            "exp": 0,
+                            "fanTicketCount": "0",
+                            "foldStrangerChat": false,
+                            "followStatus": "0",
+                            "hotsoonVerified": false,
+                            "hotsoonVerifiedReason": "",
+                            "ichatRestrictType": 0,
+                            "idStr": "",
+                            "isFollower": false,
+                            "isFollowing": false,
+                            "needProfileGuide": false,
+                            "payScores": "0",
+                            "pushCommentStatus": false,
+                            "pushDigg": false,
+                            "pushFollow": false,
+                            "pushFriendAction": false,
+                            "pushIchat": false,
+                            "pushStatus": false,
+                            "pushVideoPost": false,
+                            "pushVideoRecommend": false,
+                            "verifiedMobile": false,
+                            "verifiedReason": "",
+                            "withCarManagementPermission": false,
+                            "ageRange": 0,
+                            "watchDurationMonth": "0"
+                        },
+                        "withColon": false
+                    }
+                }
+            ]
+        },
+        "foldType": "1",
+        "anchorFoldType": "1",
+        "priorityScore": "42000",
+        "logId": "",
+        "msgProcessFilterK": "",
+        "msgProcessFilterV": "",
+        "anchorFoldTypeV2": "3",
+        "processAtSeiTimeMs": "0",
+        "randomDispatchMs": "0",
+        "isDispatch": false,
+        "channelId": "0",
+        "diffSei2absSecond": "0",
+        "anchorFoldDuration": "0"
+    },
+    "user": {
+        "id": "87955073206",
+        "shortId": "332879956",
+        "nickname": "偷袈裟的黑熊怪",
+        "gender": 1,
+        "signature": "",
+        "level": 0,
+        "birthday": "0",
+        "telephone": "",
+        "avatarThumb": {
+            "urlListList": [
+                "https://p26.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ef0f623d95f6229c3a4d541ab7e84ca0.jpeg?from=4010531038"
+            ],
+            "uri": "",
+            "height": "0",
+            "width": "0",
+            "avgColor": "",
+            "imageType": 0,
+            "openWebUrl": "",
+            "isAnimated": false,
+            "flexSettingListList": [],
+            "textSettingListList": []
+        },
+        "verified": false,
+        "experience": 0,
+        "city": "",
+        "status": 0,
+        "createTime": "0",
+        "modifyTime": "0",
+        "secret": 0,
+        "shareQrcodeUri": "",
+        "incomeSharePercent": 0,
+        "badgeImageListList": [
+            {
+                "urlListList": [
+                    "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                ],
+                "uri": "",
+                "height": "16",
+                "width": "32",
+                "avgColor": "",
+                "imageType": 1,
+                "openWebUrl": "",
+                "content": {
+                    "name": "",
+                    "fontColor": "",
+                    "level": "11",
+                    "alternativeText": "荣誉等级11级勋章"
+                },
+                "isAnimated": false,
+                "flexSettingListList": [],
+                "textSettingListList": []
+            }
+        ],
+        "followInfo": {
+            "followingCount": "160",
+            "followerCount": "74",
+            "followStatus": "1",
+            "pushStatus": "0",
+            "remarkName": "",
+            "followerCountStr": "",
+            "followingCountStr": ""
+        },
+        "payGrade": {
+            "totalDiamondCount": "0",
+            "name": "",
+            "nextName": "",
+            "level": "11",
+            "nextDiamond": "0",
+            "nowDiamond": "0",
+            "thisGradeMinDiamond": "0",
+            "thisGradeMaxDiamond": "0",
+            "payDiamondBak": "0",
+            "gradeDescribe": "",
+            "gradeIconListList": [],
+            "screenChatType": "0",
+            "newImIconWithLevel": {
+                "urlListList": [
+                    "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                ],
+                "uri": "",
+                "height": "16",
+                "width": "32",
+                "avgColor": "",
+                "imageType": 1,
+                "openWebUrl": "",
+                "isAnimated": false,
+                "flexSettingListList": [],
+                "textSettingListList": []
+            },
+            "newLiveIcon": {
+                "urlListList": [
+                    "http://p3-webcast.douyinpic.com/img/webcast/aweme_pay_grade_2x_10_14.png~tplv-obj.image"
+                ],
+                "uri": "",
+                "height": "12",
+                "width": "12",
+                "avgColor": "",
+                "imageType": 1,
+                "openWebUrl": "",
+                "isAnimated": false,
+                "flexSettingListList": [],
+                "textSettingListList": []
+            },
+            "upgradeNeedConsume": "0",
+            "nextPrivileges": "",
+            "score": "0",
+            "gradeBanner": ""
+        },
+        "fansClub": {
+            "data": {
+                "clubName": "麻团儿",
+                "level": 10,
+                "userFansClubStatus": 2,
+                "badge": {
+                    "iconsMap": [
+                        [
+                            2,
+                            {
+                                "urlListList": [
+                                    "http://p9-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image",
+                                    "http://p3-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image",
+                                    "http://p6-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image"
+                                ],
+                                "uri": "webcast/ranklist_fansclub_gray_advanced_badge_10.png",
+                                "height": "0",
+                                "width": "0",
+                                "avgColor": "",
+                                "imageType": 0,
+                                "openWebUrl": "",
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            }
+                        ],
+                        [
+                            4,
+                            {
+                                "urlListList": [
+                                    "http://p9-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image",
+                                    "http://p6-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image",
+                                    "http://p3-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image"
+                                ],
+                                "uri": "webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png",
+                                "height": "0",
+                                "width": "0",
+                                "avgColor": "",
+                                "imageType": 0,
+                                "openWebUrl": "",
+                                "isAnimated": false,
+                                "flexSettingListList": [
+                                    {
+                                        "settingListList": [
+                                            "0",
+                                            "0",
+                                            "62",
+                                            "18"
+                                        ]
+                                    }
+                                ],
+                                "textSettingListList": [
+                                    {
+                                        "settingListList": [
+                                            "0",
+                                            "0",
+                                            "62",
+                                            "18"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ],
+                    "title": "麻团儿"
+                },
+                "availableGiftIdsList": [],
+                "anchorId": "4454863190898301",
+                "badgeType": 0
+            },
+            "preferDataMap": [
+                [
+                    1,
+                    {
+                        "clubName": "可米粉",
+                        "level": 10,
+                        "userFansClubStatus": 1,
+                        "badge": {
+                            "iconsMap": [
+                                [
+                                    2,
+                                    {
+                                        "urlListList": [
+                                            "http://p9-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image",
+                                            "http://p6-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image",
+                                            "http://p3-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image"
+                                        ],
+                                        "uri": "webcast/fansclub_level_v6_10.png",
+                                        "height": "0",
+                                        "width": "0",
+                                        "avgColor": "",
+                                        "imageType": 0,
+                                        "openWebUrl": "",
+                                        "isAnimated": false,
+                                        "flexSettingListList": [],
+                                        "textSettingListList": []
+                                    }
+                                ],
+                                [
+                                    4,
+                                    {
+                                        "urlListList": [
+                                            "http://p3-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image",
+                                            "http://p9-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image",
+                                            "http://p6-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image"
+                                        ],
+                                        "uri": "webcast/fansclub_level_v6_10_xmp.png",
+                                        "height": "0",
+                                        "width": "0",
+                                        "avgColor": "",
+                                        "imageType": 0,
+                                        "openWebUrl": "",
+                                        "isAnimated": false,
+                                        "flexSettingListList": [
+                                            {
+                                                "settingListList": [
+                                                    "0",
+                                                    "0",
+                                                    "62",
+                                                    "18"
+                                                ]
+                                            }
+                                        ],
+                                        "textSettingListList": [
+                                            {
+                                                "settingListList": [
+                                                    "0",
+                                                    "0",
+                                                    "62",
+                                                    "18"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            ],
+                            "title": "可米粉"
+                        },
+                        "availableGiftIdsList": [],
+                        "anchorId": "88376779186",
+                        "badgeType": 0
+                    }
+                ]
+            ]
+        },
+        "specialId": "",
+        "realTimeIconsList": [],
+        "newRealTimeIconsList": [],
+        "topVipNo": "0",
+        "userAttr": {
+            "isMuted": false,
+            "isAdmin": false,
+            "isSuperAdmin": false,
+            "adminPrivilegesList": []
+        },
+        "payScore": "0",
+        "ticketCount": "0",
+        "linkMicStats": 0,
+        "displayId": "332879956",
+        "withCommercePermission": false,
+        "withFusionShopEntry": false,
+        "totalRechargeDiamondCount": "0",
+        "verifiedContent": "",
+        "topFansList": [],
+        "secUid": "MS4wLjABAAAAd2SayiEFti_UaDCE2ivFbwPV4WdihJlOSyJw3g93pKw",
+        "userRole": 0,
+        "authorizationInfo": 3,
+        "adversaryAuthorizationInfo": 0,
+        "mediaBadgeImageListList": [],
+        "adversaryUserStatus": 0,
+        "commerceWebcastConfigIdsList": [],
+        "badgeImageListV2List": [
+            {
+                "urlListList": [
+                    "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                ],
+                "uri": "",
+                "height": "16",
+                "width": "32",
+                "avgColor": "",
+                "imageType": 1,
+                "openWebUrl": "",
+                "content": {
+                    "name": "",
+                    "fontColor": "",
+                    "level": "11",
+                    "alternativeText": "荣誉等级11级勋章"
+                },
+                "isAnimated": false,
+                "flexSettingListList": [],
+                "textSettingListList": []
+            },
+            {
+                "urlListList": [
+                    "http://p6-webcast.douyinpic.com/img/webcast/anchor_fans_tag_v2.png~tplv-obj.image"
+                ],
+                "uri": "",
+                "height": "0",
+                "width": "0",
+                "avgColor": "",
+                "imageType": 35,
+                "openWebUrl": "",
+                "content": {
+                    "name": "",
+                    "fontColor": "",
+                    "level": "0",
+                    "alternativeText": "粉丝勋章"
+                },
+                "isAnimated": false,
+                "flexSettingListList": [],
+                "textSettingListList": []
+            }
+        ],
+        "locationCity": "",
+        "remarkName": "",
+        "mysteryMan": 1,
+        "webRid": "",
+        "desensitizedNickname": "偷袈裟的黑熊怪",
+        "isAnonymous": false,
+        "consumeDiamondLevel": 0,
+        "webcastUid": "MS4wLjMXAhNEXaA8JUlB9s_FOx_efh6IflRC2OdEBB3CSquxIBScHk0Ov1-U809cJg5Z0FA",
+        "allowBeLocated": false,
+        "allowFindByContacts": false,
+        "allowOthersDownloadVideo": false,
+        "allowOthersDownloadWhenSharingVideo": false,
+        "allowShareShowProfile": false,
+        "allowShowInGossip": false,
+        "allowShowMyAction": false,
+        "allowStrangeComment": false,
+        "allowUnfollowerComment": false,
+        "allowUseLinkmic": false,
+        "bgImgUrl": "",
+        "birthdayDescription": "",
+        "birthdayValid": false,
+        "blockStatus": 0,
+        "commentRestrict": 0,
+        "constellation": "",
+        "disableIchat": 0,
+        "enableIchatImg": "0",
+        "exp": 0,
+        "fanTicketCount": "0",
+        "foldStrangerChat": false,
+        "followStatus": "0",
+        "hotsoonVerified": false,
+        "hotsoonVerifiedReason": "",
+        "ichatRestrictType": 0,
+        "idStr": "",
+        "isFollower": false,
+        "isFollowing": false,
+        "needProfileGuide": false,
+        "payScores": "0",
+        "pushCommentStatus": false,
+        "pushDigg": false,
+        "pushFollow": false,
+        "pushFriendAction": false,
+        "pushIchat": false,
+        "pushStatus": false,
+        "pushVideoPost": false,
+        "pushVideoRecommend": false,
+        "verifiedMobile": false,
+        "verifiedReason": "",
+        "withCarManagementPermission": false,
+        "ageRange": 0,
+        "watchDurationMonth": "0"
+    },
+    "memberCount": "8747",
+    "isSetToAdmin": false,
+    "isTopUser": false,
+    "rankScore": "0",
+    "topUserNo": "0",
+    "enterType": "0",
+    "action": "1",
+    "actionDescription": "",
+    "userId": "0",
+    "popStr": "",
+    "anchorDisplayText": {
+        "key": "live_room_enter_toast",
+        "defaultPattern": "{0:user} 来了{1:string}",
+        "defaultFormat": {
+            "color": "#b8ffffff",
+            "bold": false,
+            "italic": false,
+            "weight": 400,
+            "italicAngle": 0,
+            "fontSize": 0,
+            "useHeighLightColor": false,
+            "useRemoteClor": false
+        },
+        "piecesList": [
+            {
+                "type": 11,
+                "format": {
+                    "color": "#8CE7FF",
+                    "bold": false,
+                    "italic": false,
+                    "weight": 400,
+                    "italicAngle": 0,
+                    "fontSize": 0,
+                    "useHeighLightColor": false,
+                    "useRemoteClor": false
+                },
+                "stringValue": "",
+                "userValue": {
+                    "user": {
+                        "id": "87955073206",
+                        "shortId": "332879956",
+                        "nickname": "偷袈裟的黑熊怪",
+                        "gender": 1,
+                        "signature": "",
+                        "level": 0,
+                        "birthday": "0",
+                        "telephone": "",
+                        "avatarThumb": {
+                            "urlListList": [
+                                "https://p26.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ef0f623d95f6229c3a4d541ab7e84ca0.jpeg?from=4010531038"
+                            ],
+                            "uri": "",
+                            "height": "0",
+                            "width": "0",
+                            "avgColor": "",
+                            "imageType": 0,
+                            "openWebUrl": "",
+                            "isAnimated": false,
+                            "flexSettingListList": [],
+                            "textSettingListList": []
+                        },
+                        "verified": false,
+                        "experience": 0,
+                        "city": "",
+                        "status": 0,
+                        "createTime": "0",
+                        "modifyTime": "0",
+                        "secret": 0,
+                        "shareQrcodeUri": "",
+                        "incomeSharePercent": 0,
+                        "badgeImageListList": [
+                            {
+                                "urlListList": [
+                                    "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                                ],
+                                "uri": "",
+                                "height": "16",
+                                "width": "32",
+                                "avgColor": "",
+                                "imageType": 1,
+                                "openWebUrl": "",
+                                "content": {
+                                    "name": "",
+                                    "fontColor": "",
+                                    "level": "11",
+                                    "alternativeText": "荣誉等级11级勋章"
+                                },
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            }
+                        ],
+                        "followInfo": {
+                            "followingCount": "160",
+                            "followerCount": "74",
+                            "followStatus": "1",
+                            "pushStatus": "0",
+                            "remarkName": "",
+                            "followerCountStr": "",
+                            "followingCountStr": ""
+                        },
+                        "payGrade": {
+                            "totalDiamondCount": "0",
+                            "name": "",
+                            "nextName": "",
+                            "level": "11",
+                            "nextDiamond": "0",
+                            "nowDiamond": "0",
+                            "thisGradeMinDiamond": "0",
+                            "thisGradeMaxDiamond": "0",
+                            "payDiamondBak": "0",
+                            "gradeDescribe": "",
+                            "gradeIconListList": [],
+                            "screenChatType": "0",
+                            "newImIconWithLevel": {
+                                "urlListList": [
+                                    "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                                ],
+                                "uri": "",
+                                "height": "16",
+                                "width": "32",
+                                "avgColor": "",
+                                "imageType": 1,
+                                "openWebUrl": "",
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            },
+                            "newLiveIcon": {
+                                "urlListList": [
+                                    "http://p3-webcast.douyinpic.com/img/webcast/aweme_pay_grade_2x_10_14.png~tplv-obj.image"
+                                ],
+                                "uri": "",
+                                "height": "12",
+                                "width": "12",
+                                "avgColor": "",
+                                "imageType": 1,
+                                "openWebUrl": "",
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            },
+                            "upgradeNeedConsume": "0",
+                            "nextPrivileges": "",
+                            "score": "0",
+                            "gradeBanner": ""
+                        },
+                        "fansClub": {
+                            "data": {
+                                "clubName": "麻团儿",
+                                "level": 10,
+                                "userFansClubStatus": 2,
+                                "badge": {
+                                    "iconsMap": [
+                                        [
+                                            2,
+                                            {
+                                                "urlListList": [
+                                                    "http://p9-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image",
+                                                    "http://p3-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image",
+                                                    "http://p6-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10.png~tplv-obj.image"
+                                                ],
+                                                "uri": "webcast/ranklist_fansclub_gray_advanced_badge_10.png",
+                                                "height": "0",
+                                                "width": "0",
+                                                "avgColor": "",
+                                                "imageType": 0,
+                                                "openWebUrl": "",
+                                                "isAnimated": false,
+                                                "flexSettingListList": [],
+                                                "textSettingListList": []
+                                            }
+                                        ],
+                                        [
+                                            4,
+                                            {
+                                                "urlListList": [
+                                                    "http://p9-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image",
+                                                    "http://p6-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image",
+                                                    "http://p3-webcast.douyinpic.com/img/webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png~tplv-obj.image"
+                                                ],
+                                                "uri": "webcast/ranklist_fansclub_gray_advanced_badge_10_xmp.png",
+                                                "height": "0",
+                                                "width": "0",
+                                                "avgColor": "",
+                                                "imageType": 0,
+                                                "openWebUrl": "",
+                                                "isAnimated": false,
+                                                "flexSettingListList": [
+                                                    {
+                                                        "settingListList": [
+                                                            "0",
+                                                            "0",
+                                                            "62",
+                                                            "18"
+                                                        ]
+                                                    }
+                                                ],
+                                                "textSettingListList": [
+                                                    {
+                                                        "settingListList": [
+                                                            "0",
+                                                            "0",
+                                                            "62",
+                                                            "18"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    ],
+                                    "title": "麻团儿"
+                                },
+                                "availableGiftIdsList": [],
+                                "anchorId": "4454863190898301",
+                                "badgeType": 0
+                            },
+                            "preferDataMap": [
+                                [
+                                    1,
+                                    {
+                                        "clubName": "可米粉",
+                                        "level": 10,
+                                        "userFansClubStatus": 1,
+                                        "badge": {
+                                            "iconsMap": [
+                                                [
+                                                    2,
+                                                    {
+                                                        "urlListList": [
+                                                            "http://p9-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image",
+                                                            "http://p6-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image",
+                                                            "http://p3-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10.png~tplv-obj.image"
+                                                        ],
+                                                        "uri": "webcast/fansclub_level_v6_10.png",
+                                                        "height": "0",
+                                                        "width": "0",
+                                                        "avgColor": "",
+                                                        "imageType": 0,
+                                                        "openWebUrl": "",
+                                                        "isAnimated": false,
+                                                        "flexSettingListList": [],
+                                                        "textSettingListList": []
+                                                    }
+                                                ],
+                                                [
+                                                    4,
+                                                    {
+                                                        "urlListList": [
+                                                            "http://p3-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image",
+                                                            "http://p9-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image",
+                                                            "http://p6-webcast.douyinpic.com/img/webcast/fansclub_level_v6_10_xmp.png~tplv-obj.image"
+                                                        ],
+                                                        "uri": "webcast/fansclub_level_v6_10_xmp.png",
+                                                        "height": "0",
+                                                        "width": "0",
+                                                        "avgColor": "",
+                                                        "imageType": 0,
+                                                        "openWebUrl": "",
+                                                        "isAnimated": false,
+                                                        "flexSettingListList": [
+                                                            {
+                                                                "settingListList": [
+                                                                    "0",
+                                                                    "0",
+                                                                    "62",
+                                                                    "18"
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "textSettingListList": [
+                                                            {
+                                                                "settingListList": [
+                                                                    "0",
+                                                                    "0",
+                                                                    "62",
+                                                                    "18"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            ],
+                                            "title": "可米粉"
+                                        },
+                                        "availableGiftIdsList": [],
+                                        "anchorId": "88376779186",
+                                        "badgeType": 0
+                                    }
+                                ]
+                            ]
+                        },
+                        "specialId": "",
+                        "realTimeIconsList": [],
+                        "newRealTimeIconsList": [],
+                        "topVipNo": "0",
+                        "userAttr": {
+                            "isMuted": false,
+                            "isAdmin": false,
+                            "isSuperAdmin": false,
+                            "adminPrivilegesList": []
+                        },
+                        "payScore": "0",
+                        "ticketCount": "0",
+                        "linkMicStats": 0,
+                        "displayId": "332879956",
+                        "withCommercePermission": false,
+                        "withFusionShopEntry": false,
+                        "totalRechargeDiamondCount": "0",
+                        "verifiedContent": "",
+                        "topFansList": [],
+                        "secUid": "MS4wLjABAAAAd2SayiEFti_UaDCE2ivFbwPV4WdihJlOSyJw3g93pKw",
+                        "userRole": 0,
+                        "authorizationInfo": 3,
+                        "adversaryAuthorizationInfo": 0,
+                        "mediaBadgeImageListList": [],
+                        "adversaryUserStatus": 0,
+                        "commerceWebcastConfigIdsList": [],
+                        "badgeImageListV2List": [
+                            {
+                                "urlListList": [
+                                    "http://p3-webcast.douyinpic.com/img/webcast/user_grade_level_v5_11.png~tplv-obj.image"
+                                ],
+                                "uri": "",
+                                "height": "16",
+                                "width": "32",
+                                "avgColor": "",
+                                "imageType": 1,
+                                "openWebUrl": "",
+                                "content": {
+                                    "name": "",
+                                    "fontColor": "",
+                                    "level": "11",
+                                    "alternativeText": "荣誉等级11级勋章"
+                                },
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            },
+                            {
+                                "urlListList": [
+                                    "http://p6-webcast.douyinpic.com/img/webcast/anchor_fans_tag_v2.png~tplv-obj.image"
+                                ],
+                                "uri": "",
+                                "height": "0",
+                                "width": "0",
+                                "avgColor": "",
+                                "imageType": 35,
+                                "openWebUrl": "",
+                                "content": {
+                                    "name": "",
+                                    "fontColor": "",
+                                    "level": "0",
+                                    "alternativeText": "粉丝勋章"
+                                },
+                                "isAnimated": false,
+                                "flexSettingListList": [],
+                                "textSettingListList": []
+                            }
+                        ],
+                        "locationCity": "",
+                        "remarkName": "",
+                        "mysteryMan": 1,
+                        "webRid": "",
+                        "desensitizedNickname": "偷袈裟的黑熊怪",
+                        "isAnonymous": false,
+                        "consumeDiamondLevel": 0,
+                        "webcastUid": "MS4wLjMXAhNEXaA8JUlB9s_FOx_efh6IflRC2OdEBB3CSquxIBScHk0Ov1-U809cJg5Z0FA",
+                        "allowBeLocated": false,
+                        "allowFindByContacts": false,
+                        "allowOthersDownloadVideo": false,
+                        "allowOthersDownloadWhenSharingVideo": false,
+                        "allowShareShowProfile": false,
+                        "allowShowInGossip": false,
+                        "allowShowMyAction": false,
+                        "allowStrangeComment": false,
+                        "allowUnfollowerComment": false,
+                        "allowUseLinkmic": false,
+                        "bgImgUrl": "",
+                        "birthdayDescription": "",
+                        "birthdayValid": false,
+                        "blockStatus": 0,
+                        "commentRestrict": 0,
+                        "constellation": "",
+                        "disableIchat": 0,
+                        "enableIchatImg": "0",
+                        "exp": 0,
+                        "fanTicketCount": "0",
+                        "foldStrangerChat": false,
+                        "followStatus": "0",
+                        "hotsoonVerified": false,
+                        "hotsoonVerifiedReason": "",
+                        "ichatRestrictType": 0,
+                        "idStr": "",
+                        "isFollower": false,
+                        "isFollowing": false,
+                        "needProfileGuide": false,
+                        "payScores": "0",
+                        "pushCommentStatus": false,
+                        "pushDigg": false,
+                        "pushFollow": false,
+                        "pushFriendAction": false,
+                        "pushIchat": false,
+                        "pushStatus": false,
+                        "pushVideoPost": false,
+                        "pushVideoRecommend": false,
+                        "verifiedMobile": false,
+                        "verifiedReason": "",
+                        "withCarManagementPermission": false,
+                        "ageRange": 0,
+                        "watchDurationMonth": "0"
+                    },
+                    "withColon": false
+                }
+            }
+        ]
+    },
+    "userEnterTipType": "0",
+    "anchorEnterTipType": "0"
+}

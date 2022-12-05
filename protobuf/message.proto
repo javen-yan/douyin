@@ -1,0 +1,388 @@
+
+syntax = "proto3";
+
+
+message PushFrame {
+    int64 seqid = 1;
+    int64 logid = 2;
+    int64 service = 3;
+    int64 method = 4;
+    repeated PushHeader headersList = 5;
+    string palyloadEncoding = 6;
+    string payloadtype =  7;
+    bytes palyload = 8;
+}
+
+message PushHeader {
+    string key = 1;
+    string value = 2;
+}
+
+message Response{
+    repeated Message messages = 1;
+    string cursor = 2;
+    int64 fetchInterval = 3;
+    int64 now = 4;
+    string internalExt = 5;
+    int32 fetchType = 6;
+    repeated RouteParamsEntry  routeParams = 7;
+    int64 heartbeatDuration = 8;
+    bool needAck = 9;
+    string pushServer = 10;
+}
+
+message RouteParamsEntry {
+    string key = 1;
+    string value = 2;
+}
+
+message Message{
+    string method = 1;
+    bytes payload = 2;
+    int64 msgId = 3;
+    int32 msgType = 4;
+    int64 offset = 5;
+}
+
+
+message GiftMessage {
+    Common common = 1;
+    int64 giftId = 2;
+    int64 fanTicketCount = 3;
+    int64 groupCount = 4;
+    int64 repeatCount = 5;
+    int64 comboCount = 6; 
+    User user = 7;
+    User toUser = 8;
+    int32 repeatEnd = 9;
+    int64 groupId = 11;
+    int64 incomeTaskgifts = 12;
+    int64 roomFanTicketCount = 13; 
+    GiftStruct gift = 15; 
+    string logId = 16;
+    int64 sendType = 17; 
+    int64 bannedDisplayEffects = 20; 
+}
+
+message ChatMessage {
+    Common common = 1;
+    User user = 2;
+    string content = 3;
+    bool visibleToSender = 4;
+    Image backgroundImage = 5;
+    string fullScreenTextColor = 6;
+    Image backgroundImageV2 =7;
+    Image giftImage = 10;
+}
+
+
+message Common {
+    string method = 1;
+    int64 msgId = 2;
+    int64 roomId = 3;
+    int64 createTime = 4;
+    int32 monitor = 5;
+    bool isShowMsg = 6;
+    string describe = 7;
+    int64 foldType = 9;
+    int64 anchorFoldType = 10;
+    int64 priorityScore = 11;
+    string logId = 12;
+    string msgProcessFilterK = 13;
+    string msgProcessFilterV = 14;
+    User user = 15;
+    int64 anchorFoldTypeV2 = 17;
+    int64 processAtSeiTimeMs = 18;  
+}
+
+
+message User {
+    int64 id = 1;
+    int64 shortId = 2;
+    string nickname = 3;
+    int32 gender = 4;
+    string signature = 5;
+    int32 level =6;
+    int64 birthday = 7;
+    string telephone = 8;
+    Image avatarThumb = 9;
+    Image avatarMedium = 10;
+    Image avatarLarge = 11;
+    bool verified = 12;
+    int32 experience = 13;
+    string city = 14;
+    int32 status = 15;
+    int64 createTime = 16;
+    int64 modifyTime = 17;
+    int32 secret = 18;
+    string shareQrcodeUri = 19;
+    int32 incomeSharePercent = 20;
+    Image badgeImageList = 21;
+    string specialId = 26;
+    Image avatarBorder = 27;
+    Image medal = 28;
+    Image realTimeIcons=29;
+    Image  newRealTimeIcons=30;
+    int64 topVipNo = 31;
+    int64 payScore = 34;
+    int64 ticketCount = 35;
+    int32 linkMicStats = 37;
+    string displayId = 38;
+    bool withCommercePermission = 39;
+    bool withFusionShopEntry = 40;
+    int64 totalRechargeDiamondCount = 41;
+    string verifiedContent = 43;
+    User topFans=45;
+    string secUid = 46;
+    int32 userRole = 47;
+    //48.xiguaInfo =;
+    //49.activityReward = ;
+    //50.nobleInfo = ;
+    //51.brotherhoodInfo =;
+    Image personalCard = 52;
+    //53.authenticationInfo = ;
+    int32 authorizationInfo = 54;
+    int32 adversaryAuthorizationInfo = 55;
+    //56.poiInfo =
+    Image mediaBadgeImageList=57;
+    int32 adversaryUserStatus = 58;
+    UserVIPInfo userVipInfo = 59;
+    //60.commerceWebcastConfigIds.push(e.int64());
+    //61.badgeImageListV2 
+    //62.industryCertification = 
+    string locationCity = 63;
+    //64.fansGroupInfo =
+    string remarkName = 65;
+    int32 mysteryMan = 66;
+    string webRid = 67;
+    string desensitizedNickname = 68;
+
+    bool allowBeLocated = 1001;
+
+    bool allowFindByContacts = 1002;
+
+    bool allowOthersDownloadVideo = 1003;
+
+    bool allowOthersDownloadWhenSharingVideo = 1004;
+
+    bool allowShareShowProfile = 1005;
+
+    bool allowShowInGossip = 1006;
+
+    bool allowShowMyAction = 1007;
+
+    bool allowStrangeComment = 1008;
+
+    bool allowUnfollowerComment = 1009;
+
+    bool allowUseLinkmic = 1010;
+
+    //1011.anchorLevel = 
+
+    Image avatarJpg = 1012;
+
+    string bgImgUrl = 1013;
+
+    string birthdayDescription = 1014;
+
+    bool birthdayValid = 1015;
+
+    int32 blockStatus = 1016;
+
+    int32 commentRestrict = 1017;
+
+    string constellation = 1018;
+
+    int32 disableIchat = 1019;
+
+int64 enableIchatImg = 1020;
+
+    int32 exp = 1021;
+
+    int64 fanTicketCount = 1022;
+
+    bool foldStrangerChat = 1023;
+
+    int64 followStatus = 1024;
+
+    bool hotsoonVerified = 1025;
+
+    string hotsoonVerifiedReason = 1026;
+
+    int32 ichatRestrictType =1027;
+
+    string idStr = 1028;
+
+    bool isFollower = 1029;
+
+    bool isFollowing = 1030;
+
+    bool needProfileGuide = 1031;
+
+    int64 payScores = 1032;
+
+    bool pushCommentStatus = 1033;
+
+    bool pushDigg = 1034;
+
+    bool pushFollow = 1035;
+
+    bool pushFriendAction = 1036;
+
+    bool pushIchat = 1037;
+
+    bool pushStatus = 1038;
+
+    bool pushVideoPost = 1039;
+
+    bool pushVideoRecommend = 1040;
+
+    UserStats stats = 1041;
+
+bool verifiedMobile = 1042;
+
+    string verifiedReason = 1043;
+
+    bool withCarManagementPermission = 1044;
+}
+
+
+message Image {
+string uri = 2;
+int64 height = 3;
+int64 width = 4;
+string avgColor = 5;
+int32 imageType = 6;
+string openWebUrl = 7;
+//webcast content = 8;
+bool isAnimated = 9;
+}
+
+
+message FollowInfo {
+int64 followingCount = 1;
+int64 followerCount = 2;
+int64 followStatus = 3;
+int64 pushStatus = 4;
+string remarkName = 5;
+}
+
+//l.webcast.data.User.PayGrade;
+message PayGrade {
+int64 totalDiamondCount = 1;
+//webcast diamondIcon = 2;
+string name = 3;
+//webcast icon = 4;
+string nextName = 5;
+int64 level = 6;
+//webcast nextIcon = 7;
+int64 nextDiamond = 8;
+int64 nowDiamond = 9;
+int64 thisGradeMinDiamond = 10;
+int64 thisGradeMaxDiamond = 11;
+int64 payDiamondBak = 12;
+string gradeDescribe = 13;
+int64 screenChatType = 15;
+//webcast imIcon = 16;
+//webcast imIconWithLevel = 17;
+//webcast liveIcon = 18;
+//webcast newImIconWithLevel = 19;
+//webcast newLiveIcon = 20;
+int64 upgradeNeedConsume = 21;
+string nextPrivileges = 22;
+//webcast background = 23;
+//webcast backgroundBack = 24;
+int64 score = 25;
+//webcast buffInfo = 26;
+string gradeBanner = 1001;
+//webcast profileDialogBg = 1002;
+//webcast profileDialogBgBack = 1003;
+}
+
+//l.webcast.data.UserVIPInfo;
+message UserVIPInfo {
+int64 vipLevel = 1;
+string vipLevelName = 2;
+int32 status = 3;
+int64 startTime = 4;
+int64 endTime = 5;
+int64 remainingDays = 6;
+int64 totalConsume = 7;
+int64 targetConsume = 8;
+//webcast badge = 9;
+}
+
+
+message UserStats {
+int64 id = 1;
+string idStr = 2;
+int64 followingCount = 3;
+int64 followerCount = 4;
+int64 recordCount = 5;
+int64 totalDuration = 6;
+int64 dailyFanTicketCount = 7;
+int64 dailyIncome = 8;
+int64 itemCount = 9;
+int64 favoriteItemCount = 10;
+int64 diamondCount = 11;
+int64 diamondConsumedCount = 12;
+int64 tuwenItemCount = 13;
+}
+
+
+
+message GiftStruct {
+Image image = 1;
+string describe = 2;
+bool notify = 3;
+int64 duration = 4;
+int64 id = 5;
+//webcast fansclubInfo = 6;
+bool forLinkmic = 7;
+bool doodle = 8;
+bool forFansclub = 9;
+bool combo = 10;
+int32 type = 11;
+int32 diamondCount = 12;
+bool isDisplayedOnPanel = 13;
+int64 primaryEffectId = 14;
+Image giftLabelIcon = 15;
+string name = 16;
+string region = 17;
+string manual = 18;
+bool forCustom = 19;
+Image icon = 21;
+int32 actionType = 22;
+int32 watermelonSeeds = 23;
+string goldEffect = 24;
+int64 goldenBeans = 26;
+int64 honorLevel = 27;
+int32 itemType = 28;
+string schemeUrl = 29;
+//webcast giftOperation = 30;
+string eventName = 31;
+int64 nobleLevel = 32;
+string guideUrl = 33;
+bool punishMedicine = 34;
+bool forPortal = 35;
+string businessText = 36;
+bool cnyGift = 37;
+int64 appId = 38;
+int64 vipLevel = 39;
+bool isGray = 40;
+string graySchemeUrl = 41;
+int64 giftScene = 42;
+//webcast giftBanner = 43;
+bool forFirstRecharge = 46;
+Image dynamicImgForSelected = 47;
+int32 afterSendAction = 48;
+int64 giftOfflineTime = 49;
+string topBarText = 50;
+Image topRightAvatar = 51;
+string bannerSchemeUrl = 52;
+bool isLocked = 53;
+int64 reqExtraType = 54;
+//webcast giftPreviewInfo = 56;
+//webcast giftTip = 57;
+int32 needSweepLightCount = 58;
+}
