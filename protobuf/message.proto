@@ -476,7 +476,7 @@ message TextPieceUser {
 }
 
 message GiftIMPriority {
-    repeated string queueSizes = 1;
+    repeated int64 queueSizes = 1;
     int64 selfQueuePriority = 2;
     int64 priority = 3;
 }

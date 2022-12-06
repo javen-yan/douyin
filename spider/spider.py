@@ -8,13 +8,8 @@ import requests
 import websocket
 import urllib
 from google.protobuf import json_format
-from protobuf.message_pb2 import PushFrame
-from protobuf.message_pb2 import Response
-from protobuf.message_pb2 import LikeMessage
-from protobuf.message_pb2 import MemberMessage
-from protobuf.message_pb2 import GiftMessage
-from protobuf.message_pb2 import ChatMessage
-from protobuf.message_pb2 import SocialMessage
+from google.protobuf.json_format import MessageToDict
+from protobuf import message_pb2
 
 liveRoomId = None
 ttwid = None
@@ -23,106 +18,49 @@ liveRoomTitle = None
 
 
 def onMessage(ws: websocket.WebSocketApp, message: bytes):
-    wssPackage = PushFrame()
-    wssPackage.ParseFromString(message)
-    logId = wssPackage.logId
-    decompressed = gzip.decompress(wssPackage.payload)
-    payloadPackage = Response()
-    payloadPackage.ParseFromString(decompressed)
-    # 发送ack包
-    if payloadPackage.needAck:
-        sendAck(ws, logId, payloadPackage.internalExt)
-    # WebcastGiftMessage
-    for msg in payloadPackage.messagesList:
 
-        if msg.method == 'WebcastLikeMessage':
-            # unPackWebcastLikeMessage(msg.payload)
-            return
+    o = message_pb2.PushFrame()
+    o.ParseFromString(message)
 
-        if msg.method == 'WebcastMemberMessage':
-            # unPackWebcastMemberMessage(msg.payload)
-            return
-        if msg.method == 'WebcastGiftMessage':
-            # unPackWebcastGiftMessage(msg.payload)
-            return
-        if msg.method == 'WebcastChatMessage':
-            unPackWebcastChatMessage(msg.payload)
-            return
+    print(o.logid)
 
-        if msg.method == 'WebcastSocialMessage':
-            # unPackWebcastSocialMessage(msg.payload)
-            return
-
-        # logging.info('[onMessage] [⌛️方法' + msg.method + '等待解析～] [房间Id：' + liveRoomId + ']')
-
-
-def unPackWebcastSocialMessage(data):
-    socialMessage = SocialMessage()
-    socialMessage.ParseFromString(data)
-    data = json_format.MessageToDict(
-        socialMessage, preserving_proto_field_name=True)
-    log = json.dumps(data, ensure_ascii=False)
-    logging.info(
-        '[unPackWebcastSocialMessage] [➕直播间关注消息] [房间Id：' + liveRoomId + '] ｜ ' + log)
-    return data
+    payload = gzip.decompress(o.palyload)
+    r = message_pb2.Response()
+    r.ParseFromString(payload)
+    # print(r)
+    e = r
+    messagelist = e.messages
+    for t in messagelist:
+        o = t.payload
+        message_ = ''
+        if t.method == "WebcastLikeMessage":
+            message_ = message_pb2.LikeMessage()
+            message_.ParseFromString(o)
+        elif t.method == "WebcastChatMessage":
+            message_ = message_pb2.ChatMessage()
+            message_.ParseFromString(o)
+        elif t.method == "WebcastMemberMessage":
+            message_ = message_pb2.MemberMessage()
+            message_.ParseFromString(o)
+        elif t.method == "WebcastSocialMessage":
+            message_ = message_pb2.SocialMessage()
+            message_.ParseFromString(o)
+        elif t.method == "WebcastGiftMessage":
+            message_ = message_pb2.GiftMessage()
+            message_.ParseFromString(o)
+        else:
+            print(t.method)
+        if message_:
+            obj1 = MessageToDict(message_, preserving_proto_field_name=True)
+            print(json.dumps(obj1, ensure_ascii=False))
 
 
-# 普通消息
-def unPackWebcastChatMessage(data):
-    chatMessage = ChatMessage()
-    chatMessage.ParseFromString(data)
-    data = json_format.MessageToDict(
-        chatMessage, preserving_proto_field_name=True)
-    # log = json.dumps(data, ensure_ascii=False)
-    logging.info('[unPackWebcastChatMessage] [📧直播间弹幕消息] [房间Id：' +
-                 liveRoomId + '] ｜ ' + data['content'])
-    # logging.info('[unPackWebcastChatMessage] [📧直播间弹幕消息] [房间Id：' + liveRoomId + '] ｜ ' + log)
-    return data
-
-
-# 礼物消息
-def unPackWebcastGiftMessage(data):
-    giftMessage = GiftMessage()
-    giftMessage.ParseFromString(data)
-    data = json_format.MessageToDict(
-        giftMessage, preserving_proto_field_name=True)
-    log = json.dumps(data, ensure_ascii=False)
-    logging.info(
-        '[unPackWebcastGiftMessage] [🎁直播间礼物消息] [房间Id：' + liveRoomId + '] ｜ ' + log)
-    return data
-
-
-# xx成员进入直播间消息
-def unPackWebcastMemberMessage(data):
-    memberMessage = MemberMessage()
-    memberMessage.ParseFromString(data)
-    data = json_format.MessageToDict(
-        memberMessage, preserving_proto_field_name=True)
-    log = json.dumps(data, ensure_ascii=False)
-    logging.info(
-        '[unPackWebcastMemberMessage] [🚹🚺直播间成员加入消息] [房间Id：' + liveRoomId + '] ｜ ' + log)
-    return data
-
-
-# 点赞
-def unPackWebcastLikeMessage(data):
-    likeMessage = LikeMessage()
-    likeMessage.ParseFromString(data)
-    data = json_format.MessageToDict(
-        likeMessage, preserving_proto_field_name=True)
-    log = json.dumps(data, ensure_ascii=False)
-    logging.info(
-        '[unPackWebcastLikeMessage] [👍直播间点赞消息] [房间Id：' + liveRoomId + '] ｜ ' + log)
-    return data
-
-
-# 发送Ack请求
-def sendAck(ws, logId, internalExt):
-    obj = PushFrame()
-    obj.payloadType = 'ack'
-    obj.logId = logId
+def sendAck(ws, logid, internalExt):
+    obj = message_pb2.PushFrame()
+    obj.payloadtype = 'ack'
+    obj.logid = logId
     sdata = bytes(internalExt, encoding="utf8")
-    obj.payloadType = sdata
+    obj.payloadtype = sdata
     data = obj.SerializeToString()
     ws.send(data, websocket.ABNF.OPCODE_BINARY)
     # logging.info('[sendAck] [🌟发送Ack] [房间Id：' + liveRoomId + '] ====> 房间🏖标题【' + liveRoomTitle +'】')
@@ -145,8 +83,8 @@ def onOpen(ws):
 # 发送ping心跳包
 def ping(ws):
     while True:
-        obj = PushFrame()
-        obj.payloadType = 'hb'
+        obj = message_pb2.PushFrame()
+        obj.payloadtype = 'hb'
         data = obj.SerializeToString()
         ws.send(data, websocket.ABNF.OPCODE_BINARY)
         logging.info('[ping] [💗发送ping心跳] [房间Id：' + liveRoomId +
