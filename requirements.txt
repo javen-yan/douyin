@@ -1,3 +1,5 @@
 requests
 websocket
+websockets
+websocket-client
 protobuf

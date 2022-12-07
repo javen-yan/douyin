@@ -58,7 +58,7 @@ def onMessage(ws: websocket.WebSocketApp, message: bytes):
 def sendAck(ws, logid, internalExt):
     obj = message_pb2.PushFrame()
     obj.payloadtype = 'ack'
-    obj.logid = logId
+    obj.logid = logid
     sdata = bytes(internalExt, encoding="utf8")
     obj.payloadtype = sdata
     data = obj.SerializeToString()
