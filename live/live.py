@@ -62,8 +62,6 @@ class Live(WebSocketApp):
             'Cookie': 'ttwid=' + self._tid,
         }
 
-        print(self.connect_url)
-
         super(Live, self).__init__(url=self.connect_url, header=h,
                                    on_message=self.on_message, on_error=self.on_error,
                                    on_open=self.on_open, on_close=self.on_close)
@@ -262,7 +260,3 @@ class Live(WebSocketApp):
         return 'wss://webcast3-ws-web-lf.douyin.com/webcast/im/push/v2/?' + urllib.parse.urlencode(params)
 
 
-if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
-    live = Live('https://live.douyin.com/94351606421')
-    live.run_forever()
