@@ -31,7 +31,8 @@ class Live(WebSocketApp):
                 "WebcastChatMessage",
                 "WebcastMemberMessage",
                 "WebcastSocialMessage",
-                "WebcastGiftMessage"
+                "WebcastGiftMessage",
+                "WebcastRoomUserSeqMessage"
             ]
 
         self.filter_method = filter_method
@@ -39,16 +40,29 @@ class Live(WebSocketApp):
         self.live_url = live_url
         self.request = requests.Session()
 
+        self.request.headers.update({
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
+                      '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
+                          'Chrome/107.0.0.0 Safari/537.36'
+        })
+
         self._tid = ""
         self._room_store = {}
+        self._user_store = {}
         self._live_room_id = ""
         self._live_room_title = ""
+        self._push_id = ""
+        self._log_id = ""
+        self.__ac_nonce = ""
 
         self._parser_live_info()
 
         h = {
             'Cookie': 'ttwid=' + self._tid,
         }
+
+        print(self.connect_url)
 
         super(Live, self).__init__(url=self.connect_url, header=h,
                                    on_message=self.on_message, on_error=self.on_error,
@@ -59,7 +73,9 @@ class Live(WebSocketApp):
         return {
             "room_id": self._live_room_id,
             "room_title": self._live_room_title,
-            "room_store": self._room_store
+            "room_store": self._room_store,
+            "user_store": self._user_store,
+            "push_did": self._push_id
         }
 
     def on_message(self, *args):
@@ -100,6 +116,9 @@ class Live(WebSocketApp):
                 message_.ParseFromString(payload)
             elif t.method == "WebcastGiftMessage":
                 message_ = message_pb2.GiftMessage()
+                message_.ParseFromString(payload)
+            elif t.method == "WebcastRoomUserSeqMessage":
+                message_ = message_pb2.RoomUserSeqMessage()
                 message_.ParseFromString(payload)
             if message_:
                 obj1 = MessageToDict(message_, preserving_proto_field_name=True)
@@ -144,15 +163,24 @@ class Live(WebSocketApp):
             obj.payloadtype = 'hb'
             data = obj.SerializeToString()
             self.send(data, websocket.ABNF.OPCODE_BINARY)
-            logging.info('[ping] [💗发送ping心跳] [房间Id：' + self._live_room_id + '] ====> 房间🏖标题【' + self._live_room_title + '】')
+            logging.info(
+                '[ping] [💗发送ping心跳] [房间Id：' + self._live_room_id + '] ====> 房间🏖标题【' + self._live_room_title + '】')
             time.sleep(10)
 
-    def on_open(self):
+    def on_open(self, *args):
         """
         :method: on open
         """
         thread.start_new_thread(self.ping, ())
         logging.info('[onOpen] [webSocket Open事件] [房间Id：' + self._live_room_id + ']')
+
+    def _get_ac_nonce(self):
+        """
+        :method: get ac nonce
+        """
+        response = self.request.get(self.live_url)
+        self.__ac_nonce = response.cookies.get('__ac_nonce')
+        return self.__ac_nonce
 
     def _parser_live_info(self):
         """
@@ -162,39 +190,79 @@ class Live(WebSocketApp):
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
                       '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/107.0.0.0 Safari/537.36',
-            'cookie': '__ac_nonce=0638733a400869171be51'
+                          'Chrome/107.0.0.0 Safari/537.36'
+        })
+        if self.__ac_nonce == "":
+            logging.warning('[parserLiveInfo] [获取__ac_nonce失败] [房间Id：' + self._live_room_id + '] 重新获取')
+            self.__ac_nonce = self._get_ac_nonce()
+            logging.warning('[parserLiveInfo] [获取__ac_nonce成功] [房间Id：' + self._live_room_id + ']' + self.__ac_nonce)
+        self.request.headers.update({
+            'cookie': '__ac_nonce=' + self.__ac_nonce
         })
         response = self.request.get(self.live_url)
         data = response.cookies.get_dict()
-        self._tid = data['ttwid']
-        res = response.text
-        res = re.search(r'<script id="RENDER_DATA" type="application/json">(.*?)</script>', res)
-        res = res.group(1)
-        res = urllib.parse.unquote(res, encoding='utf-8', errors='replace')
-        res = json.loads(res)
-        self._room_store = res['app']['initialState']['roomStore']
-        self._live_room_id = self._room_store['roomInfo']['roomId']
-        self._live_room_title = self._room_store['roomInfo']['room']['title']
+        try:
+            self._tid = data['ttwid']
+            self._log_id = response.headers.get('x-tt-logid')
+            res = response.text
+            res = re.search(r'<script id="RENDER_DATA" type="application/json">(.*?)</script>', res)
+            res = res.group(1)
+            res = urllib.parse.unquote(res, encoding='utf-8', errors='replace')
+            res = json.loads(res)
+            self._room_store = res['app']['initialState']['roomStore']
+            self._user_store = res['app']['initialState']['userStore']
+            self._push_id = self._user_store['odin']['user_unique_id']
+            self._live_room_id = self._room_store['roomInfo']['roomId']
+            self._live_room_title = self._room_store['roomInfo']['room']['title']
+        except Exception as e:
+            logging.error('[解析直播间信息] [异常] [房间Id：' + self._live_room_id + ']' + str(e))
+            raise e
 
     @property
     def connect_url(self):
-        return 'wss://webcast3-ws-web-lf.douyin.com/webcast/im/push/v2/?app_name=douyin_web&version_code=180800' \
-               '&webcast_sdk_version=1.3.0&update_version_code=1.3.0&compress=gzip&internal_ext=internal_src:dim' \
-               '|wss_push_room_id:' + self._live_room_id + '|wss_push_did:7139391558914393612|dim_log_id' \
-                                                           ':2022113016104801020810207318AA8748|fetch_time:1669795848095|seq:1|wss_info:0-1669795848095-0-0' \
-                                                           '|wrds_kvs:WebcastRoomStatsMessage-1669795848048115671_WebcastRoomRankMessage-1669795848064411370' \
-                                                           '&cursor=t-1669795848095_r-1_d-1_u-1_h-1&host=https://live.douyin.com&aid=6383&live_id=1&did_rule=3' \
-                                                           '&debug=false&endpoint=live_pc&support_wrds=1&im_path=/webcast/im/fetch/&device_platform=web' \
-                                                           '&cookie_enabled=true&screen_width=1440&screen_height=900&browser_language=zh&browser_platform' \
-                                                           '=MacIntel&browser_name=Mozilla&browser_version=5.0%20(' \
-                                                           'Macintosh;%20Intel%20Mac%20OS%20X%2010_15_7)%20AppleWebKit/537.36' \
-                                                           '%20(KHTML,%20like%20Gecko)%20Chrome/107.0.0.0%20Safari/537.36&browser_online=true&tz_name=Asia' \
-                                                           '/Shanghai&identity=audience&room_id=' + self._live_room_id + \
-               '&heartbeatDuration=0 '
+        now_nano = time.time_ns()
+        now_sec = int(int(round(time.time() * 1000)))
+        now_nano_2 = time.time_ns()
+
+        params = {
+            'app_name': 'douyin_web',
+            'version_code': '180800',
+            'webcast_sdk_version': '1.3.0',
+            'update_version_code': '1.3.0',
+            'compress': 'gzip',
+            'internal_ext': f'internal_src:dim|wss_push_room_id:{self._live_room_id}|wss_push_did:{self._push_id}'
+                            f'|dim_log_id:{self._log_id}|fetch_time:{now_sec}|seq:1|wss_info:0'
+                            f'-{now_sec}-0-0|wrds_kvs:WebcastRoomRankMessage'
+                            f'-{now_nano}_WebcastRoomStatsMessage-{now_nano_2}',
+            'cursor': f'h-1_t-{now_sec}_r-1_d-1_u-1',
+            'host': 'https://live.douyin.com',
+            'aid': '6383',
+            'live_id': '1',
+            'did_rule': '3',
+            'debug': False,
+            'endpoint': 'live_pc',
+            'support_wrds': '1',
+            'im_path': '/webcast/im/fetch/',
+            'device_platform': 'web',
+            'cookie_enabled': True,
+            'screen_width': 1680,
+            'screen_height': 1050,
+            'browser_language': 'zh',
+            'browser_platform': 'MacIntel',
+            'browser_name': 'Mozilla',
+            'browser_version': '5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
+                               'Chrome/107.0.0.0 Safari/537.36',
+            'browser_online': True,
+            'tz_name': 'Asia/Shanghai',
+            'identity': 'audience',
+            'room_id': self._live_room_id,
+            'heartbeatDuration': 0
+        }
+
+        return 'wss://webcast3-ws-web-lf.douyin.com/webcast/im/push/v2/?' + urllib.parse.urlencode(params)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
-    live = Live('https://live.douyin.com/561770113380')
+    live = Live('https://live.douyin.com/94351606421')
     live.run_forever()
