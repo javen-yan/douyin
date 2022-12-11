@@ -2,41 +2,41 @@
 import gzip
 import json
 import urllib
+import uuid
 
+from utils.threadfunc import stop_thread
+from .socket_client import SocketClient
+from .msg_exchanger import format_msg
 from google.protobuf.json_format import MessageToDict
 from websocket import WebSocketApp
 import websocket
 import requests
 import re
 import logging
-
-try:
-    import thread
-except ImportError:
-    import _thread as thread
+import threading
 import time
 
 from protobuf import message_pb2
 
+default_format_filter = [
+    "WebcastLikeMessage",
+    "WebcastChatMessage",
+    "WebcastMemberMessage",
+    "WebcastGiftMessage"
+]
+
 
 class Live(WebSocketApp):
 
-    def __init__(self, live_url, callback_ws=None, filter_method=None):
-        if callback_ws is None:
-            callback_ws = []
+    def __init__(self, live_url, **kwargs):
 
-        if filter_method is None:
-            filter_method = [
-                "WebcastLikeMessage",
-                "WebcastChatMessage",
-                "WebcastMemberMessage",
-                "WebcastSocialMessage",
-                "WebcastGiftMessage",
-                "WebcastRoomUserSeqMessage"
-            ]
+        if kwargs.get('filter_method'):
+            self.filter_method = kwargs.get('filter_method')
+        else:
+            self.filter_method = default_format_filter
 
-        self.filter_method = filter_method
-        self.callback_ws = callback_ws
+        self.__callback_sockets = kwargs.get('callback_socket')
+
         self.live_url = live_url
         self.request = requests.Session()
 
@@ -47,6 +47,11 @@ class Live(WebSocketApp):
                           'Chrome/107.0.0.0 Safari/537.36'
         })
 
+        self.is_open = False
+        self.id = str(uuid.uuid4()).replace('-', '')
+        self.cb_clients = {}
+        self.ping_thread = None
+        self.main_thread = None
         self._tid = ""
         self._room_store = {}
         self._user_store = {}
@@ -57,6 +62,8 @@ class Live(WebSocketApp):
         self.__ac_nonce = ""
 
         self._parser_live_info()
+
+        self.__callback_builder()
 
         h = {
             'Cookie': 'ttwid=' + self._tid,
@@ -69,6 +76,7 @@ class Live(WebSocketApp):
     @property
     def info(self):
         return {
+            "id": self.id,
             "room_id": self._live_room_id,
             "room_title": self._live_room_title,
             "room_store": self._room_store,
@@ -97,8 +105,10 @@ class Live(WebSocketApp):
         for t in r.messages:
             payload = t.payload
             message_ = ''
+            format_flag = False
+            if t.method in default_format_filter:
+                format_flag = True
             if t.method not in self.filter_method:
-                logging.warning('[缺失捕获] [房间Id：' + self._live_room_id + ']' + 'method : ' + t.method)
                 continue
             if t.method == "WebcastLikeMessage":
                 message_ = message_pb2.LikeMessage()
@@ -118,9 +128,19 @@ class Live(WebSocketApp):
             elif t.method == "WebcastRoomUserSeqMessage":
                 message_ = message_pb2.RoomUserSeqMessage()
                 message_.ParseFromString(payload)
+            elif t.method == "WebcastFansClubMessage":
+                message_ = message_pb2.FansClubMessage()
+                message_.ParseFromString(payload)
+            elif t.method == "WebcastControlMessage":
+                message_ = message_pb2.ControlMessage()
+                message_.ParseFromString(payload)
             if message_:
                 obj1 = MessageToDict(message_, preserving_proto_field_name=True)
-                print(json.dumps(obj1, ensure_ascii=False))
+                if format_flag:
+                    obj1 = format_msg(obj1)
+                logging.debug('[onMessage] [webSocket Message事件] [房间Id：' +
+                              self._live_room_id + '] [内容：' + str(json.dumps(obj1, ensure_ascii=False)) + ']')
+                self.callback(bytes(json.dumps(obj1, ensure_ascii=False), encoding='utf-8'))
 
     def on_error(self, *args):
         """
@@ -136,7 +156,11 @@ class Live(WebSocketApp):
         :param args: [0] = class WebSocketApp
         :param args: [1] = close code
         """
+        self.is_open = False
         logging.warning('[onClose] [webSocket Close事件] [房间Id：' + self._live_room_id + ']')
+        for k, v in self.cb_clients.items():
+            v.close()
+            del self.cb_clients[k]
 
     def send_ack(self, logid, internal_ext):
         """
@@ -150,26 +174,36 @@ class Live(WebSocketApp):
         sdata = bytes(internal_ext, encoding="utf8")
         obj.payloadtype = sdata
         data = obj.SerializeToString()
-        self.send(data, websocket.ABNF.OPCODE_BINARY)
+        try:
+            self.send(data, websocket.ABNF.OPCODE_BINARY)
+        except Exception as e:
+            logging.error('[sendAck] [发送ack失败] [房间Id：' + self._live_room_id + '] [错误信息：' + str(e) + ']')
+            pass
 
     def ping(self):
         """
         :method: ping
         """
-        while True:
+        while self.is_open:
             obj = message_pb2.PushFrame()
             obj.payloadtype = 'hb'
             data = obj.SerializeToString()
-            self.send(data, websocket.ABNF.OPCODE_BINARY)
-            logging.info(
-                '[ping] [💗发送ping心跳] [房间Id：' + self._live_room_id + '] ====> 房间🏖标题【' + self._live_room_title + '】')
-            time.sleep(10)
+            try:
+                self.send(data, websocket.ABNF.OPCODE_BINARY)
+                logging.info(
+                    '[ping] [💗发送ping心跳] [房间Id：' + self._live_room_id + '] ====> 房间🏖标题【' + self._live_room_title + '】')
+                time.sleep(10)
+            except Exception as e:
+                logging.error('[ping] [发送ping心跳失败] [房间Id：' + self._live_room_id + '] [错误信息：' + str(e) + ']')
+                pass
 
     def on_open(self, *args):
         """
         :method: on open
         """
-        thread.start_new_thread(self.ping, ())
+        self.is_open = True
+        self.ping_thread = threading.Thread(target=self.ping)
+        self.ping_thread.start()
         logging.info('[onOpen] [webSocket Open事件] [房间Id：' + self._live_room_id + ']')
 
     def _get_ac_nonce(self):
@@ -193,7 +227,8 @@ class Live(WebSocketApp):
         if self.__ac_nonce == "":
             logging.warning('[parserLiveInfo] [获取__ac_nonce失败] [房间Id：' + self._live_room_id + '] 重新获取')
             self.__ac_nonce = self._get_ac_nonce()
-            logging.warning('[parserLiveInfo] [获取__ac_nonce成功] [房间Id：' + self._live_room_id + ']' + self.__ac_nonce)
+            logging.warning(
+                '[parserLiveInfo] [获取__ac_nonce成功] [房间Id：' + self._live_room_id + ']' + self.__ac_nonce)
         self.request.headers.update({
             'cookie': '__ac_nonce=' + self.__ac_nonce
         })
@@ -259,4 +294,45 @@ class Live(WebSocketApp):
 
         return 'wss://webcast3-ws-web-lf.douyin.com/webcast/im/push/v2/?' + urllib.parse.urlencode(params)
 
+    def __callback_builder(self):
 
+        if self.__callback_sockets is None:
+            return None
+
+        for callback_socket in self.__callback_sockets:
+            peer = callback_socket.split(':')
+            if len(peer) != 2:
+                continue
+            try:
+                host = peer[0]
+                port = int(peer[1])
+                client = SocketClient(host, port)
+                self.cb_clients[peer] = client
+            except Exception as e:
+                logging.error('[回调] [异常' + 'socket:' + callback_socket + '] [房间Id：' + self._live_room_id + ']' + str(e))
+                continue
+
+    def callback(self, msg: bytes):
+
+        if self.cb_clients is None:
+            return None
+
+        for url, client in self.cb_clients.items():
+            try:
+                client.send(msg)
+            except Exception as e:
+                logging.error('[回调] [异常' + 'socket:' + url + '] [房间Id：' + self._live_room_id + ']' + str(e))
+                del self.cb_clients[url]
+                continue
+
+    def stop(self):
+        self.is_open = False
+        if self.main_thread is not None:
+            stop_thread(self.main_thread)
+        if self.ping_thread is not None:
+            stop_thread(self.ping_thread)
+        self.close()
+
+    def start(self):
+        self.main_thread = threading.Thread(target=self.run_forever)
+        self.main_thread.start()
