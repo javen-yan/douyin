@@ -109,6 +109,7 @@ class Live(WebSocketApp):
             self.filter_method = default_format_filter
 
         self.__callback_sockets = kwargs.get('callback_socket')
+        self._py_callback = kwargs.get('callback_handler')
 
         self.live_url = f"https://live.douyin.com/{self.live_id}" if not live_url.startswith('http') else live_url
         self.request = requests.Session()
@@ -284,18 +285,24 @@ class Live(WebSocketApp):
                 elif method == 'WebcastRoomStreamAdaptationMessage':
                     self._parseRoomStreamAdaptationMsg(msg.payload)
                 
-                # 保持原有的回调机制
-                if method in self.filter_method:
-                    try:
-                        # 尝试解析为字典格式用于回调
-                        message_obj = self._parse_message_to_dict(method, msg.payload)
-                        if message_obj:
-                            obj1 = MessageToDict(message_obj, preserving_proto_field_name=True)
-                            if method in default_format_filter:
-                                obj1 = format_msg(obj1)
-                            self.callback(bytes(json.dumps(obj1, ensure_ascii=False), encoding='utf-8'))
-                    except Exception as e:
-                        pass
+                # 解析并返回原始JSON到Python回调与socket
+                try:
+                    message_obj = self._parse_message_to_dict(method, msg.payload)
+                    if message_obj:
+                        obj_dict = MessageToDict(message_obj, preserving_proto_field_name=True)
+                        payload_dict = {"method": method, "data": obj_dict}
+                        if getattr(self, "_py_callback", None):
+                            try:
+                                self._py_callback(payload_dict)
+                            except Exception:
+                                pass
+                        if (self.filter_method is None) or (method in self.filter_method):
+                            try:
+                                self.callback(bytes(json.dumps(payload_dict, ensure_ascii=False), encoding='utf-8'))
+                            except Exception:
+                                pass
+                except Exception:
+                    pass
             except Exception:
                 pass
 

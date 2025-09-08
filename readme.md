@@ -1,5 +1,24 @@
 # Douyin 直播抓取
 
+## 桌面应用
+
+1. 安装依赖
+
+```
+pip install -r requirements.txt
+```
+
+2. 启动桌面应用
+
+```
+python console.py
+```
+
+3. 功能
+
+- 直播地址输入，开始/停止
+- 消息滚动日志（原始JSON）
+- 针对不同消息类型配置 Webhook 或 MQTT 发布
 
 ## API
 
