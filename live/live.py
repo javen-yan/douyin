@@ -19,7 +19,6 @@ import requests
 import websocket
 import logging
 from py_mini_racer import MiniRacer
-from google.protobuf.json_format import MessageToDict
 from websocket import WebSocketApp
 
 from utils.threadfunc import stop_thread
@@ -256,7 +255,6 @@ class Live(WebSocketApp):
         # 根据消息类别解析消息体
         for msg in response.messages_list:
             method = msg.method
-            print(f"====== 【{method}】 ====")
             try:
                 if method == 'WebcastChatMessage':
                     self._parseChatMsg(msg.payload)
@@ -289,20 +287,29 @@ class Live(WebSocketApp):
                 try:
                     message_obj = self._parse_message_to_dict(method, msg.payload)
                     if message_obj:
-                        obj_dict = MessageToDict(message_obj, preserving_proto_field_name=True)
+                        obj_dict = message_obj.to_dict()
                         payload_dict = {"method": method, "data": obj_dict}
+                    else:
+                        payload_dict = {"method": method, "data": {}}
+                    
+                    if getattr(self, "_py_callback", None):
+                        try:
+                            self._py_callback(payload_dict)
+                        except Exception:
+                            pass
+                    if (self.filter_method is None) or (method in self.filter_method):
+                        try:
+                            self.callback(bytes(json.dumps(payload_dict, ensure_ascii=False), encoding='utf-8'))
+                        except Exception:
+                            pass
+                except Exception as e:
+                    # 即使解析失败，也尝试发送基本消息
+                    try:
+                        payload_dict = {"method": method, "data": {}, "raw": msg.payload}
                         if getattr(self, "_py_callback", None):
-                            try:
-                                self._py_callback(payload_dict)
-                            except Exception:
-                                pass
-                        if (self.filter_method is None) or (method in self.filter_method):
-                            try:
-                                self.callback(bytes(json.dumps(payload_dict, ensure_ascii=False), encoding='utf-8'))
-                            except Exception:
-                                pass
-                except Exception:
-                    pass
+                            self._py_callback(payload_dict)
+                    except Exception:
+                        pass
             except Exception:
                 pass
 
@@ -311,7 +318,7 @@ class Live(WebSocketApp):
         try:
             if method == "WebcastLikeMessage":
                 return LikeMessage().parse(payload)
-            elif method == "WebcaxstChatMessage":
+            elif method == "WebcastChatMessage":
                 return ChatMessage().parse(payload)
             elif method == "WebcastMemberMessage":
                 return MemberMessage().parse(payload)
